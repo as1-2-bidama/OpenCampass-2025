@@ -26,6 +26,7 @@ def camera():
     #     break
     return faces
 image_inu = pygame.image.load('いぬ.png')
+image_inu = pygame.transform.scale(image_inu,(1600,1200))
 run = True
 clock = pygame.time.Clock()
 image = {}
@@ -33,7 +34,7 @@ for i in range(1,201):
     j = str(i).zfill(4)
     print(i,j)
     image[i] = pygame.image.load(f'./picture/{j}.png')
-    image[i] = pygame.transform.flip(image[i], True,True)
+    # image[i] = pygame.transform.flip(image[i], True,True)
 
 while run:
     screen.fill((0,0,0))
@@ -44,7 +45,8 @@ while run:
     else:
         for x, y, w, h in face:
             print(x)
-            screen.blit(image[int(int(x)/3)],(0,0))
+            if(x<400 and x > 0):
+                screen.blit(image[int(int(x)/2)],(0,0))
     # pygameのイベント処理
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
